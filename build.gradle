@@ -1,0 +1,88 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.selenium_automation'
+version = '1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_24
+    targetCompatibility = JavaVersion.VERSION_24
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo1.maven.org/maven2/' }
+}
+
+ext {
+    cucumberVersion = '7.22.0'
+}
+
+dependencies {
+    // Cucumber
+    implementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    implementation "io.cucumber:cucumber-testng:${cucumberVersion}"
+
+    // Extent Reports
+    implementation 'com.aventstack:extentreports:5.0.9'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+
+    // Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java:4.33.0'
+
+    // TestNG
+    testImplementation 'org.testng:testng:7.11.0'
+
+    // JUnit
+    testImplementation 'junit:junit:4.13.2'
+
+    // Apache Commons Lang
+    implementation 'org.apache.commons:commons-lang3:3.9'
+
+    // MySQL Connector
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // Jansi
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
+
+    // Commons IO
+    implementation 'commons-io:commons-io:2.11.0'
+
+    // Reflections
+    implementation 'org.reflections:reflections:0.10.2'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    //json
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+    implementation 'org.json:json:20230227'
+}
+
+test {
+    useTestNG()
+    //include '**/Runner.class'
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+
+    jvmArgs '--enable-native-access=ALL-UNNAMED'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test']
+        }
+    }
+}
