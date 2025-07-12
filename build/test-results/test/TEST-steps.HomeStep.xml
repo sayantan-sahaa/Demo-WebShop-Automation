@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="steps.HomeStep" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-12T20:57:58.575Z" hostname="sayan-82nc" time="0.669">
+  <properties/>
+  <testcase name="getTitle" classname="steps.HomeStep" time="0.669"/>
+  <system-out><![CDATA[Initializing page elements...
+Page elements initialized successfully
+Clicking on element: [[FirefoxDriver: firefox on linux (98030870-2571-42ba-b129-eba1fd86f061)] -> class name: ico-login]
+Clicked on element: [[FirefoxDriver: firefox on linux (98030870-2571-42ba-b129-eba1fd86f061)] -> class name: ico-login]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
