@@ -1,14 +1,14 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
 import org.openqa.selenium.Keys;
-
-import static base.Hooks.*;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
+import static hooks.Hooks.*;
 
 public class CommonUtils {
 
@@ -33,17 +33,16 @@ public class CommonUtils {
         moveToElement(target);
     }
 
-    public static void getConfig(String filePath, String key){
+    public static String getConfig(String fileName, String key) {
         try {
-            FileInputStream fis = new FileInputStream(filePath);
+            FileInputStream fis = new FileInputStream(new File("src/"+fileName+".properties"));
             Properties prop = new Properties();
             prop.load(fis);
-            prop.getProperty(key);
+            return prop.getProperty(key);
+        } catch (Exception e) {
+            //logger.error("Error reading config file: {}", e.getMessage(), e);
+            return null;
         }
-        catch(Exception e){
-            System.out.println();
-        }
-
     }
     
 }

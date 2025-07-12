@@ -5,13 +5,11 @@ import java.util.HashMap;
 
 public class DriverManagerFactory {
 
-   // private DriverManagerFactory(){}
 
     public static Map<String, Class<? extends DriverManager>> driverMap = new HashMap<>();
 
     public void setdriverMap(Class<? extends DriverManager> clazz, String browser){
         driverMap.put(browser, clazz);
-
     }
 
     public DriverManager getDriverManager(String browser){

@@ -4,8 +4,6 @@ import io.cucumber.testng.CucumberOptions;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
-import static base.Hooks.*;
-
 @CucumberOptions(
     features = "src/test/resources/features",
     glue = {"steps"},

@@ -28,10 +28,8 @@ dependencies {
     implementation 'com.aventstack:extentreports:5.0.9'
 
     // Logging
-    implementation 'org.slf4j:slf4j-simple:1.7.36'
-    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
-    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
-
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+    implementation 'ch.qos.logback:logback-core:1.4.14'
     // Selenium
     implementation 'org.seleniumhq.selenium:selenium-java:4.33.0'
 

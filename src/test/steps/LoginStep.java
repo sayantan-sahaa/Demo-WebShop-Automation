@@ -1,13 +1,17 @@
 package steps;
 
 import static org.testng.Assert.assertEquals;
+
+import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
-import base.Hooks;
+
+import hooks.Hooks;
 import io.cucumber.java.en.When;
 
 public class LoginStep extends Hooks {
 
-    @Test(groups = {"authentication"})
+    @BeforeGroups(groups={"Register", "Login", "Category-Panels", })
+    @Test(groups = {"homepage"})
     @When("the user is on the login page, then the window title should be Demo Web Shop")
     public void getTitle(){
         assertEquals(getDr().getTitle(), "Demo Web Shop");
