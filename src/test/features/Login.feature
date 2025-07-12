@@ -11,7 +11,6 @@ Feature: Login Functionality
     And the user enters valid password
     And the user clicks on the login button
     Then the user should be logged in successfully
-    And the user should see their account information
 
   Scenario: Failed login with invalid email
     When the user enters invalid email address

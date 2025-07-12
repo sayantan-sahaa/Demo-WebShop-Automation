@@ -49,7 +49,7 @@ public class Waits {
 	}
 
 	// Wait for elements to be clickable
-	protected static void waitClickable(WebElement element) {
+	public static void waitClickable(WebElement element) {
 		try {
 			new org.openqa.selenium.support.ui.FluentWait<>(getDr())
 				.withTimeout(java.time.Duration.ofSeconds(30))
