@@ -7,14 +7,16 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage{
 
     //Page Factory
-    @FindBy(id = "user-name")
+    @FindBy(id = "RememberMe")
     public static WebElement username;
 
-    @FindBy(id = "password")
+    @FindBy(className = "email")
+    public static WebElement email;
+
+    @FindBy(className = "password")
     public static WebElement password;
 
-    @FindBy(id = "login-button")
+    @FindBy(css = ".button-1.login-button")  // No spaces between classes in CSS
     public static WebElement loginButton;
-    
-    
+      
 }

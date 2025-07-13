@@ -9,22 +9,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.reflections.Reflections;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.AfterAll;
+import org.testng.annotations.*;
 
 import base.*;
 import listeners.Listener;
-import listeners.TestNGListener;
 import pages.HomePage;
 import pages.LoginPage;
 import reporting.ExtentReportUtil;
-import static utils.CommonUtils.*;
 import static utils.Asserts.*;
 
 public class Hooks {
@@ -36,42 +27,45 @@ public class Hooks {
     }
     
     @BeforeSuite
-    public static void setUp() {
-        try {
-            System.out.println("Setting up WebDriver with listeners...");
+public static void setUp() {
+    try {
+        System.out.println("Setting up WebDriver with listeners...");
+        
+        DriverManagerFactory driverManager = new DriverManagerFactory();
+        driverManager.setdriverMap(Base.class, "firefox");
+        
+        if (driver.get() == null) {
+            DriverManagerFactory driverManagerFactory = new DriverManagerFactory();
+            DriverManager dm = driverManagerFactory.getDriverManager("firefox");
+            WebDriver rawWebDriver = dm.createDriver();
             
-            DriverManagerFactory driverManager = new DriverManagerFactory();
-            driverManager.setdriverMap(Base.class, "firefox");
+            // Set the raw WebDriver in ThreadLocal FIRST
+            driver.set(rawWebDriver);
             
-            if (driver.get() == null) {
-                DriverManagerFactory driverManagerFactory = new DriverManagerFactory();
-                DriverManager dm = driverManagerFactory.getDriverManager("firefox");
-                WebDriver rawWebDriver = dm.createDriver();
-                
-                // Create the WebDriver listener
-                Listener webDriverListener = new Listener();
-                
-                // Wrap the WebDriver with EventFiringDecorator to attach listeners
-                WebDriver decoratedWebDriver = new EventFiringDecorator<>(webDriverListener)
-                    .decorate(rawWebDriver);
-                
-                // Configure the decorated WebDriver
-                decoratedWebDriver.manage().window().maximize();
-                decoratedWebDriver.manage().deleteAllCookies();
-                decoratedWebDriver.get("https://demowebshop.tricentis.com/");
-                
-                // Set the decorated WebDriver in ThreadLocal
-                driver.set(decoratedWebDriver);
-                
-                System.out.println("WebDriver setup completed with listeners attached");
-                System.out.println("Current URL: " + decoratedWebDriver.getCurrentUrl());
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to setup WebDriver: " + e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("WebDriver initialization failed", e);
+            // Create the WebDriver listener
+            Listener webDriverListener = new Listener();
+            
+            // Wrap the WebDriver with EventFiringDecorator to attach listeners
+            WebDriver decoratedWebDriver = new EventFiringDecorator<>(webDriverListener)
+                .decorate(rawWebDriver);
+            
+            // Update the ThreadLocal with decorated WebDriver
+            driver.set(decoratedWebDriver);
+            
+            // Configure the decorated WebDriver
+            decoratedWebDriver.manage().window().maximize();
+            decoratedWebDriver.manage().deleteAllCookies();
+            decoratedWebDriver.get("https://demowebshop.tricentis.com/");
+            
+            System.out.println("WebDriver setup completed with listeners attached");
+            System.out.println("Current URL: " + decoratedWebDriver.getCurrentUrl());
         }
+    } catch (Exception e) {
+        System.err.println("Failed to setup WebDriver: " + e.getMessage());
+        e.printStackTrace();
+        throw new RuntimeException("WebDriver initialization failed", e);
     }
+}
     
     
     public static WebDriver getDr() {
