@@ -1,0 +1,111 @@
+=============================================================================
+                           TEST CASE TEMPLATE
+=============================================================================
+
+TEST CASE ID: TC_[MODULE]_[NUMBER]
+TEST CASE TITLE: [Descriptive title of the test case]
+
+MODULE/FEATURE: [Application module being tested]
+PRIORITY: [High/Medium/Low]
+TEST TYPE: [Functional/Integration/UI/API/Performance/Security]
+AUTOMATION STATUS: [Manual/Automated/To be Automated]
+
+AUTHOR: [Test Case Author]
+CREATION DATE: [DD/MM/YYYY]
+LAST UPDATED: [DD/MM/YYYY]
+REVIEWED BY: [Reviewer Name]
+
+=============================================================================
+PRECONDITIONS:
+=============================================================================
+- [Condition 1: System state before test execution]
+- [Condition 2: Data requirements]
+- [Condition 3: Environment setup requirements]
+
+=============================================================================
+TEST DATA:
+=============================================================================
+Input Data:
+- Field 1: [Value/Data type]
+- Field 2: [Value/Data type]
+- Field 3: [Value/Data type]
+
+Expected Data:
+- Expected Result 1: [Value]
+- Expected Result 2: [Value]
+
+=============================================================================
+TEST STEPS:
+=============================================================================
+Step 1: [Action to be performed]
+       Expected Result: [What should happen]
+
+Step 2: [Action to be performed]
+       Expected Result: [What should happen]
+
+Step 3: [Action to be performed]
+       Expected Result: [What should happen]
+
+Step N: [Final action]
+       Expected Result: [Final expected outcome]
+
+=============================================================================
+ACTUAL RESULTS:
+=============================================================================
+[To be filled during test execution]
+
+=============================================================================
+TEST STATUS:
+=============================================================================
+[ ] PASS
+[ ] FAIL
+[ ] BLOCKED
+[ ] NOT TESTED
+
+=============================================================================
+DEFECT DETAILS (If Failed):
+=============================================================================
+Defect ID: [Bug tracking system ID]
+Defect Summary: [Brief description of the issue]
+Severity: [Critical/High/Medium/Low]
+Priority: [High/Medium/Low]
+
+=============================================================================
+POST-CONDITIONS:
+=============================================================================
+- [System state after test execution]
+- [Cleanup requirements]
+- [Data restoration needs]
+
+=============================================================================
+DEPENDENCIES:
+=============================================================================
+- [Test case dependencies]
+- [Module dependencies]
+- [Data dependencies]
+
+=============================================================================
+TAGS/LABELS:
+=============================================================================
+[Smoke] [Regression] [Sanity] [Critical Path] [Login] [Checkout] [etc.]
+
+=============================================================================
+BROWSER/ENVIRONMENT COMPATIBILITY:
+=============================================================================
+[ ] Chrome    [ ] Firefox    [ ] Safari    [ ] Edge
+[ ] Mobile    [ ] Tablet     [ ] Desktop
+[ ] Windows   [ ] macOS      [ ] Linux
+
+=============================================================================
+AUTOMATION DETAILS (If Applicable):
+=============================================================================
+Test Script Location: [Path to automated test]
+Framework: [Selenium/Cypress/Playwright/etc.]
+Test Method: [Method name in automation suite]
+
+=============================================================================
+NOTES/COMMENTS:
+=============================================================================
+[Additional information, special considerations, known issues]
+
+=============================================================================

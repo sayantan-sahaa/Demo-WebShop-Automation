@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Demo-WebShop-Test-Suite" verbose="0">
+    <test name="Regression-Tests">
+        <groups>
+            <run>
+                <include name="Login"/>
+                <include name="Home"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="steps.HomeStep"/>
+            <class name="steps.LoginSteps"/>
+        </classes>
+    </test>
+</suite>
