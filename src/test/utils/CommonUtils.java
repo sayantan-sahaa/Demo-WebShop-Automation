@@ -14,13 +14,14 @@ public class CommonUtils {
 
     public static void deleteText(WebElement textBox){
         textBox.clear();
-        new Actions(getDr()).
-        moveToElement(textBox).
-        keyDown(Keys.CONTROL).sendKeys("a").
-        sendKeys(Keys.DELETE).
-        keyUp(Keys.CONTROL).
-        build().
-        perform();
+        new Actions(getDr())
+            .moveToElement(textBox)
+            .keyDown(Keys.CONTROL)
+            .sendKeys("a")
+            .keyUp(Keys.CONTROL)
+            .sendKeys(Keys.DELETE)
+            .build()
+            .perform();
     }
 
     public static void doubleClick(WebElement element){
@@ -43,6 +44,12 @@ public class CommonUtils {
             //logger.error("Error reading config file: {}", e.getMessage(), e);
             return null;
         }
+    }
+
+    public static void dragnDrop(WebElement source, WebElement target){
+        new Actions(getDr()).
+        dragAndDrop(source, target).
+        build().perform();
     }
     
 }

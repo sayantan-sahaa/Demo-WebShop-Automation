@@ -9,6 +9,7 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.reflections.Reflections;
 import org.testng.annotations.*;
 
+import static core_java.Pattern.*;
 import base.Base;
 import base.DriverManager;
 import base.DriverManagerFactory;
@@ -25,6 +26,8 @@ public class Hooks {
     @BeforeSuite
     public void setUp() { 
         try {
+
+            printPattern(5);
             System.out.println("Initializing Extent Report...");
             ExtentReportUtil.initializeReport();
             System.out.println("Extent Report initialized successfully");

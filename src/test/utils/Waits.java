@@ -1,18 +1,19 @@
 package utils;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import static hooks.Hooks.*;
 
 
 public class Waits {
 
-	private Waits() { } // Prevent instantiation
+	private Waits() { } 
 
     //Fluent wait for page title
 	public static void waitTitle(String title) {
 		try {
-			new org.openqa.selenium.support.ui.FluentWait<>(getDr())
+			new FluentWait<>(getDr())
 				.withTimeout(java.time.Duration.ofSeconds(10))
 				.pollingEvery(java.time.Duration.ofMillis(500))
 				.ignoring(Exception.class)
@@ -26,7 +27,7 @@ public class Waits {
 	
 	public static void waitTitleContains(String title) {
 		try {
-			new org.openqa.selenium.support.ui.FluentWait<>(getDr())
+			new FluentWait<>(getDr())
 				.withTimeout(java.time.Duration.ofSeconds(10))
 				.pollingEvery(java.time.Duration.ofMillis(500))
 				.ignoring(Exception.class)
@@ -38,7 +39,7 @@ public class Waits {
 
 	public static void waitVisibility(WebElement element) {
 		try {
-			new org.openqa.selenium.support.ui.FluentWait<>(getDr())
+			new FluentWait<>(getDr())
 				.withTimeout(java.time.Duration.ofSeconds(30))
 				.pollingEvery(java.time.Duration.ofMillis(500))
 				.ignoring(Exception.class)
@@ -51,7 +52,7 @@ public class Waits {
 	// Wait for elements to be clickable
 	public static void waitClickable(WebElement element) {
 		try {
-			new org.openqa.selenium.support.ui.FluentWait<>(getDr())
+			new FluentWait<>(getDr())
 				.withTimeout(java.time.Duration.ofSeconds(30))
 				.pollingEvery(java.time.Duration.ofMillis(500))
 				.ignoring(Exception.class)
