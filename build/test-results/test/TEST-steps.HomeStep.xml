@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="steps.HomeStep" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-15T21:16:34.645Z" hostname="sayan-82nc" time="0.013">
+<testsuite name="steps.HomeStep" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-17T20:29:13.685Z" hostname="sayan-82nc" time="0.01">
   <properties/>
-  <testcase name="getTitle" classname="steps.HomeStep" time="0.013"/>
-  <system-out><![CDATA[Initializing page elements...
+  <testcase name="getTitle" classname="steps.HomeStep" time="0.01"/>
+  <system-out><![CDATA[Initializing page elements for test: getTitle
 Page elements initialized successfully
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

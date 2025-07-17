@@ -20,8 +20,7 @@ public class ExtentReportUtil {
 
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);
-        extent.setSystemInfo("SUT", "Swag Labs");
-        extent.setSystemInfo("Environment", "Live");
+        extent.setSystemInfo("SUT", "Demo Web Shop");
         extent.setSystemInfo("Browser", "Firefox");
         extent.setSystemInfo("Tester", "Sayantan Saha");
     }

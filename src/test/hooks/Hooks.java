@@ -2,18 +2,22 @@ package hooks;
 
 import java.util.Set;
 import java.io.File;
+import java.lang.reflect.Method;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.reflections.Reflections;
 import org.testng.annotations.*;
+import org.testng.ITestResult;
 
 import static core_java.Pattern.*;
-import base.Base;
+
+import base.FirefoxDriverManager;
 import base.DriverManager;
 import base.DriverManagerFactory;
 import listeners.Listener;
+import listeners.ScreenShotUtil;
 import pages.HomePage;
 import pages.LoginPage;
 import reporting.ExtentReportUtil;
@@ -23,19 +27,17 @@ public class Hooks {
 
     public static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setUp() { 
         try {
-
             printPattern(5);
-            System.out.println("Initializing Extent Report...");
+
             ExtentReportUtil.initializeReport();
-            System.out.println("Extent Report initialized successfully");
             
-            System.out.println("Setting up WebDriver with listeners...");
-            
+            ScreenShotUtil.startScreenRecord();
+                        
             DriverManagerFactory driverManager = new DriverManagerFactory();
-            driverManager.setdriverMap(Base.class, "firefox");
+            driverManager.setdriverMap(FirefoxDriverManager.class, "firefox");
             
             if (driver.get() == null) {
                 DriverManagerFactory driverManagerFactory = new DriverManagerFactory();
@@ -52,15 +54,13 @@ public class Hooks {
                 driver.set(decoratedWebDriver);
                 
                 decoratedWebDriver.manage().window().maximize();
+                
                 decoratedWebDriver.manage().deleteAllCookies();
                 decoratedWebDriver.get("https://demowebshop.tricentis.com/");
-                
-                System.out.println("WebDriver setup completed with listeners attached");
-                System.out.println("Current URL: " + decoratedWebDriver.getCurrentUrl());
-                
+                               
                 ExtentReportUtil.createTest("Test Suite Setup")
+                    .info("Screen recording started using Meta+Alt+R shortcut")
                     .info("WebDriver initialized successfully")
-                    .info("Browser: Firefox")
                     .info("Application URL: https://demowebshop.tricentis.com/")
                     .info("Current URL: " + decoratedWebDriver.getCurrentUrl());
             }
@@ -89,14 +89,16 @@ public class Hooks {
     }
 
     @BeforeMethod
-    public void initPageElements() {
-        System.out.println("Initializing page elements...");
+    public void initPageElements(Method method) {
+        String testName = method.getName();
+        
+        System.out.println("Initializing page elements for test: " + testName);
         try {
             WebDriver driverInstance = getDr();
             PageFactory.initElements(driverInstance, HomePage.class);
             PageFactory.initElements(driverInstance, LoginPage.class);
             System.out.println("Page elements initialized successfully");
-                
+                            
         } catch (Exception e) {
             System.err.println("Failed to initialize page elements: " + e.getMessage());
             e.printStackTrace();
@@ -110,7 +112,7 @@ public class Hooks {
             }
         }
     }
-
+    
     @AfterSuite
     public void tearDown() {  
         try {
@@ -139,10 +141,14 @@ public class Hooks {
             WebDriver webDriver = driver.get();
             if (webDriver != null) {
                 try {
+                    // Stop screen recording before browser closes
+                    ScreenShotUtil.stopScreenRecord();
+                    
                     webDriver.quit();
                     System.out.println("WebDriver closed successfully");
                     
                     ExtentReportUtil.createTest("Test Suite Teardown")
+                        .info("Screen recording stopped using Meta+Alt+R shortcut")
                         .info("WebDriver closed successfully")
                         .pass("Test suite teardown completed");
                         
@@ -165,24 +171,16 @@ public class Hooks {
                 
                 File reportFile = new File("target/ExtentReport.html");
                 if (reportFile.exists()) {
-                    openReportInBrowser(reportFile);
+                    //openReportInBrowser(reportFile);
                     System.out.println("Extent Report process completed: " + reportFile.getAbsolutePath());
                 } else {
                     System.out.println("Extent Report not found: " + reportFile.getAbsolutePath());
                 }
+                
             } catch (Exception e) {
                 System.err.println("Error with Extent Report operations: " + e.getMessage());
             }
         }
-    }
-    
-    private static void openReportInBrowser(File reportFile) {
-        // ... existing implementation remains the same
-    }
-    
-    private static boolean shouldOpenBrowser() {
-        String openBrowser = System.getProperty("open.report.browser", "true");
-        return Boolean.parseBoolean(openBrowser);
     }
     
     private static void clearStaticFields() {
@@ -214,29 +212,6 @@ public class Hooks {
             
         } catch (Exception e) {
             System.err.println("Error clearing static fields: " + e.getMessage());
-        }
-    }
-    
-    public static void logToExtentReport(String testName, String message, String status) {
-        try {
-            switch (status.toLowerCase()) {
-                case "pass":
-                    ExtentReportUtil.createTest(testName).pass(message);
-                    break;
-                case "fail":
-                    ExtentReportUtil.createTest(testName).fail(message);
-                    break;
-                case "info":
-                    ExtentReportUtil.createTest(testName).info(message);
-                    break;
-                case "warning":
-                    ExtentReportUtil.createTest(testName).warning(message);
-                    break;
-                default:
-                    ExtentReportUtil.createTest(testName).info(message);
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to log to Extent Report: " + e.getMessage());
         }
     }
 }

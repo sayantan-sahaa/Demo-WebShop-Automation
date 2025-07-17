@@ -4,7 +4,6 @@ import org.openqa.selenium.Keys;
 
 import static pages.HomePage.*;
 import static pages.LoginPage.*;
-import static utils.CommonUtils.scrollToElement;
 
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.*;

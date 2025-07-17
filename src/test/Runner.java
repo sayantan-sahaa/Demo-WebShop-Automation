@@ -3,13 +3,10 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-    features = "src/test/resources/features",
+    features = "src/test/features",
     glue = {"steps", "hooks"},
     plugin = {
-        "pretty", 
-        "html:target/cucumber-reports",
-        "json:target/cucumber-reports/cucumber.json",
-        "junit:target/cucumber-reports/cucumber.xml"
+        "pretty",
     },
     monochrome = true
 )
