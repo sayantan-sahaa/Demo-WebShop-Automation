@@ -1,4 +1,12 @@
 {
-    "java.compile.nullAnalysis.mode": "disabled",
-    "java.configuration.updateBuildConfiguration": "disabled"
+    "java.test.config": {
+        "env": {
+            "DISPLAY": ":0"
+        },
+        "vmArgs": [
+            "-Djava.awt.headless=false"
+        ]
+    },
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

@@ -1,0 +1,138 @@
+Selenium is an open source library for automating web browsers. It provides a simple API for writing tests in various programming languages, including Python, Java, and C#. Selenium supports multiple browsers like Chrome, Firefox, and Safari, allowing developers to simulate user interactions with web applications.
+It is widely used for testing web applications, as it can mimic real user behavior by interacting with web elements such as buttons, forms, and links. It also supports advanced features like waiting for elements to appear, handling alerts, and taking screenshots, making it a powerful tool for ensuring the quality and reliability of web applications.   
+Selenium WebDriver is the core component of Selenium, providing a programming interface to control web browsers
+programmatically.
+
+Lets Dive Deeper into how to build a Selenium WebDriver framework in Java
+
+1. **Setup Environment**: 
+    - Install Java Development Kit (JDK).
+    - Set up an Integrated Development Environment (IDE) like IntelliJ IDEA or Eclipse.
+    - Set up Gradle for dependency management.
+    - Add Selenium WebDriver dependencies to the `build.gradle` file
+
+    plugins {
+          id 'java'
+    }
+
+    group = 'com.selenium_automation'
+    version = '1.0'
+
+    java {
+          sourceCompatibility = JavaVersion.VERSION_24
+          targetCompatibility = JavaVersion.VERSION_24
+    }
+
+    repositories {
+          mavenCentral()
+          maven { url 'https://repo1.maven.org/maven2/' }
+    }
+
+    ext {
+          cucumberVersion = '7.22.0'
+    }
+
+    dependencies {
+          // Cucumber
+          implementation "io.cucumber:cucumber-java:${cucumberVersion}"
+          implementation "io.cucumber:cucumber-testng:${cucumberVersion}"
+
+          // Extent Reports
+          implementation 'com.aventstack:extentreports:5.0.9'
+
+          // Logging
+          implementation 'ch.qos.logback:logback-classic:1.4.14'
+          implementation 'ch.qos.logback:logback-core:1.4.14'
+          
+          // Selenium
+          implementation 'org.seleniumhq.selenium:selenium-java:4.33.0'
+
+          // TestNG
+          testImplementation 'org.testng:testng:7.11.0'
+
+          // JUnit
+          testImplementation 'junit:junit:4.13.2'
+
+          // Apache Commons Lang
+          implementation 'org.apache.commons:commons-lang3:3.9'
+
+          // MySQL Connector
+          implementation 'mysql:mysql-connector-java:8.0.33'
+
+          // Jansi
+          implementation 'org.fusesource.jansi:jansi:2.4.0'
+
+          // Commons IO
+          implementation 'commons-io:commons-io:2.11.0'
+
+          // Reflections
+          implementation 'org.reflections:reflections:0.10.2'
+          implementation 'org.apache.poi:poi-ooxml:5.2.3'
+          
+          // JSON
+          implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+          implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
+          implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+          implementation 'org.json:json:20230227'
+    }
+
+    test {
+          useTestNG()
+          //include '**/Runner.class'
+          testLogging {
+                 events "passed", "skipped", "failed"
+                 showStandardStreams = true
+          }
+
+          jvmArgs '--enable-native-access=ALL-UNNAMED'
+    }
+
+    sourceSets {
+          main {
+                 java {
+                        srcDirs = ['src/main']
+                 }
+          }
+          test {
+                 java {
+                        srcDirs = ['src/test']
+                 }
+          }
+    }
+
+2. **Create Project Structure**:
+    - Create a directory structure for your project:
+         ```
+         Demo-WebShop-Automation
+         ├── build.gradle                  # Gradle build configuration
+         ├── config.properties             # Framework configuration
+         ├── QAT.AI/                       # Custom wrapper for GitHub Copilot enabled QA asset generation
+         │   ├── 1. Input Files/
+         │   ├── 2. Prompt Library/
+         │   └── 3. Templates/
+         ├── screenshots/                  # Saved screenshots from tests
+         ├── src/
+         │   ├── main/
+         │   │   └── selenium_automation/
+         │   │       ├── base/             # WebDriver management (Base.java, DriverManager.java, DriverManagerFactory.java)
+         │   │       ├── reporting/        # Reporting utilities (ExtentReportUtil.java)
+         │   │       ├── utils/            # Utility classes (CommonUtils.java, Asserts.java, TestDataReader.java)
+         │   │       └── pages/            # Page Object Model classes (HomePage.java, LoginPage.java, etc.)
+         │   └── test/
+         │       └── selenium_automation/
+         │           ├── datamodels/       # Data transfer objects (LoginCredential.java, etc.)
+         │           ├── features/         # Cucumber feature files (Login.feature, etc.)
+         │           ├── hooks/            # Test lifecycle management (Hooks.java)
+         │           ├── listeners/        # Custom listeners (Listener.java, ScreenShotUtil.java, TestNGListener.java)
+         │           ├── pages/            # Test page objects (if any test-specific)
+         │           ├── steps/            # Step definitions & test classes (HomeStep.java, LoginSteps.java, etc.)
+         │           ├── utils/            # Test utilities
+         │           └── Runner.java       # Cucumber test runner
+         ├── target/                       # Extent report output
+         │   
+         └── test-recordings/              # Saved screen recordings
+         ```
+
+3. **Implement WebDriver Management**:
+    - Create a `Base.java` class to initialize and manage the WebDriver instance.
+    -

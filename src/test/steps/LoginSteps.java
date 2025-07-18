@@ -1,18 +1,15 @@
 package steps;
 
-import org.openqa.selenium.Keys;
-
 import static pages.HomePage.*;
 import static pages.LoginPage.*;
 
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.*;
 
+import base.Base;
 import io.cucumber.java.en.*;
+import static utils.CommonUtils.*;
 
-import hooks.Hooks;
-
-public class LoginSteps extends Hooks{
+public class LoginSteps extends Base{
 
     @Test(groups = {"Login"})
     public void completeLoginFlow(){
@@ -40,13 +37,12 @@ public class LoginSteps extends Hooks{
 
     @And("the user clicks on the login button")
     public void clickLoginButton() {
-        //scrollToElement(loginButton);
-        new Actions(getDr()).sendKeys(Keys.PAGE_DOWN).perform();
+        scrollToElement(loginButton);
+        //new Actions(getDr()).sendKeys(Keys.PAGE_DOWN).perform();
         loginButton.click();
     }
 
     @Then("the user should be logged in successfully")
     public void verifySuccessfulLogin() {
-        // Add your verification logic here
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="steps.LoginSteps" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-18T23:22:57.585Z" hostname="sayan-82nc" time="2.209">
+  <properties/>
+  <testcase name="completeLoginFlow" classname="steps.LoginSteps" time="2.209"/>
+  <system-out><![CDATA[Initializing page elements for test: completeLoginFlow
+Page elements initialized successfully
+Clicking on element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: a.ico-login]
+Clicked on element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: a.ico-login]
+Sending keys to element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.email] - Keys: test@example.com
+Sent keys to element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.email] - Keys: test@example.com
+Sending keys to element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.password] - Keys: password123
+Sent keys to element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.password] - Keys: password123
+Clicking on element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.button-1.login-button]
+Clicked on element: [[FirefoxDriver: firefox on linux (e1263f99-10c8-4680-ad3b-3a27423d56f9)] -> css selector: input.button-1.login-button]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
