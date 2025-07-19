@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.reflections.Reflections;
 import org.testng.annotations.*;
-import org.testng.ITestResult;
 
 import static core_java.Pattern.*;
 
