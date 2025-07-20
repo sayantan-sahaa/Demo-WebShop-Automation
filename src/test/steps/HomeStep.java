@@ -10,7 +10,7 @@ public class HomeStep extends Base{
 
     @BeforeGroups(groups={"Register", "Login", "Category-Panels", })
     @Test(groups={"Home"})
-    @When("When the user is on the home page, then the window title should be Demo Web Shop")
+    @When("the user is on the home page, then the window title should be Demo Web Shop")
     public void getTitle(){
         assertEquals(getDr().getTitle(), "Demo Web Shop");
     }

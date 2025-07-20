@@ -13,36 +13,39 @@ public class LoginSteps extends Base{
 
     @Test(groups = {"Login"})
     public void completeLoginFlow(){
-        clickLoginURL();
-        enterValidEmail();
-        enterValidPassword();
-        clickLoginButton();
+        clickLoginURL().enterValidEmail()
+        .enterValidPassword().clickLoginButton().
         verifySuccessfulLogin();
     }
     
     @Given("the user is on the Demo Web Shop login page")
-    public void clickLoginURL(){
+    public LoginSteps clickLoginURL(){
         loginURL.click();
+        return this;
     }
     
     @When("the user enters valid email address")
-    public void enterValidEmail() {
+    public LoginSteps enterValidEmail() {
         email.sendKeys("test@example.com");
+        return this;
     }
 
     @And("the user enters valid password")
-    public void enterValidPassword() {
+    public LoginSteps enterValidPassword() {
         password.sendKeys("password123");
+        return this;
     }
 
     @And("the user clicks on the login button")
-    public void clickLoginButton() {
+    public LoginSteps clickLoginButton() {
         scrollToElement(loginButton);
         //new Actions(getDr()).sendKeys(Keys.PAGE_DOWN).perform();
         loginButton.click();
+        return this;
     }
 
     @Then("the user should be logged in successfully")
-    public void verifySuccessfulLogin() {
+    public LoginSteps verifySuccessfulLogin() {
+        return this;
     }
 }
