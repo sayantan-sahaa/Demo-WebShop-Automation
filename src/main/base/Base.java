@@ -11,7 +11,7 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.reflections.Reflections;
 import org.testng.annotations.*;
 
-import static core_java.Pattern.*;
+import core_java.Pattern;
 
 import listeners.Listener;
 import reporting.ExtentReportUtil;
@@ -25,7 +25,9 @@ public class Base {
     @BeforeSuite(alwaysRun = true)
     public void setUp() { 
         try {
-            printPattern(5);
+            
+            new Pattern().printPattern1(5).printPattern2(5).
+            printPattern3(5);
 
             ExtentReportUtil.initializeReport();
             

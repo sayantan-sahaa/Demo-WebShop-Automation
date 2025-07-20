@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="steps.LoginSteps" tests="1" skipped="1" failures="0" errors="0" timestamp="2025-07-20T11:38:15.241Z" hostname="sayan-82nc" time="0.0">
+<testsuite name="steps.LoginSteps" tests="1" skipped="1" failures="0" errors="0" timestamp="2025-07-20T23:06:13.930Z" hostname="sayan-82nc" time="0.0">
   <properties/>
   <testcase name="completeLoginFlow" classname="steps.LoginSteps" time="0.0">
     <skipped message="WebDriver initialization failed" type="java.lang.RuntimeException">java.lang.RuntimeException: WebDriver initialization failed
-	at base.Base.setUp(Base.java:74)
+	at base.Base.setUp(Base.java:76)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -59,7 +59,7 @@ Command: [null, newSession {capabilities=[Capabilities {acceptInsecureCerts: tru
 	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:99)
 	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:89)
 	at base.FirefoxDriverManager.createDriver(FirefoxDriverManager.java:10)
-	at base.Base.setUp(Base.java:40)
+	at base.Base.setUp(Base.java:42)
 	... 33 more
 </skipped>
   </testcase>
