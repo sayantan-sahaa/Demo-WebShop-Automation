@@ -10,11 +10,6 @@ public class Base_Page {
         id, name, xpath, css, cssSelector, className, tag, tagName, linkText, partialLinkText
     }
 
-    /**
-     * Dynamically finds a WebElement using a custom By locator.
-     * Example usage: findBy(LocatorType.XPATH, "//div[@id='example']")
-     * Returns null if the element is not found, instead of throwing an exception.
-     */
     public static WebElement findBy(LocatorType byType, String locator) {
         try {
             By by;
