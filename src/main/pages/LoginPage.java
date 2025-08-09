@@ -1,104 +1,42 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import static pages.Base_Page.*;
+
+import static pages.Base_Page.LocatorType.*;
 
 public class LoginPage {
 
     // ==== LOGIN FORM ELEMENTS ====
-    
-    // Email input field
-    @FindBy(id = "Email")
-    public static WebElement emailField;
-    
-    // Alternative locator for email
-    @FindBy(css = "input.email")
-    public static WebElement email;
-    
-    // Password input field
-    @FindBy(id = "Password")
-    public static WebElement passwordField;
-    
-    // Alternative locator for password
-    @FindBy(css = "input.password")
-    public static WebElement password;
-    
-    // Remember me checkbox
-    @FindBy(id = "RememberMe")
-    public static WebElement rememberMeCheckbox;
-    
-    // Login button
-    @FindBy(css = "input.button-1.login-button")
-    public static WebElement loginButton;
-    
-    // Alternative login button locator
-    @FindBy(css = "input[type='submit'][value='Log in']")
-    public static WebElement submitLoginButton;
-    
-    // Forgot password link
-    @FindBy(linkText = "Forgot password?")
-    public static WebElement forgotPasswordLink;
-    
-    // Alternative forgot password locator
-    @FindBy(css = "a[href='/passwordrecovery']")
-    public static WebElement forgotPasswordLinkAlt;
-    
+    public static WebElement emailField = findBy(id, "Email");
+    public static WebElement email = findBy(css, "input.email");
+    public static WebElement passwordField = findBy(id, "Password");
+    public static WebElement password = findBy(css, "input.password");
+    public static WebElement rememberMeCheckbox = findBy(id, "RememberMe");
+    public static WebElement loginButton = findBy(css, "input.button-1.login-button");
+    public static WebElement submitLoginButton = findBy(css, "input[type='submit'][value='Log in']");
+    public static WebElement forgotPasswordLink = findBy(linkText, "Forgot password?");
+    public static WebElement forgotPasswordLinkAlt = findBy(css, "a[href='/passwordrecovery']");
+
     // ==== PAGE ELEMENTS ====
-    
-    // Page title
-    @FindBy(css = ".page-title h1")
-    public static WebElement pageTitle;
-    
-    // Login page heading
-    @FindBy(xpath = "//h1[text()='Welcome, Please Sign In!']")
-    public static WebElement welcomeHeading;
-    
-    // Error message container
-    @FindBy(css = ".message-error")
-    public static WebElement errorMessageContainer;
-    
-    // Validation messages
-    @FindBy(css = "span[data-valmsg-for='Email']")
-    public static WebElement emailValidationMessage;
-    
-    @FindBy(css = "span[data-valmsg-for='Password']")
-    public static WebElement passwordValidationMessage;
-    
+    public static WebElement pageTitle = findBy(css, ".page-title h1");
+    public static WebElement welcomeHeading = findBy(xpath, "//h1[text()='Welcome, Please Sign In!']");
+    public static WebElement errorMessageContainer = findBy(css, ".message-error");
+    public static WebElement emailValidationMessage = findBy(css, "span[data-valmsg-for='Email']");
+    public static WebElement passwordValidationMessage = findBy(css, "span[data-valmsg-for='Password']");
+
     // ==== REGISTRATION SECTION ====
-    
-    // New Customer section
-    @FindBy(css = ".new-wrapper.register-block .title strong")
-    public static WebElement newCustomerTitle;
-    
-    // Register button
-    @FindBy(css = "input.button-1.register-button")
-    public static WebElement registerButton;
-    
-    // Alternative register button
-    @FindBy(css = "input[onclick=\"location.href='/register'\"]")
-    public static WebElement registerButtonAlt;
-    
-    // Returning Customer section
-    @FindBy(css = ".returning-wrapper .title strong")
-    public static WebElement returningCustomerTitle;
-    
+    public static WebElement newCustomerTitle = findBy(css, ".new-wrapper.register-block .title strong");
+    public static WebElement registerButton = findBy(css, "input.button-1.register-button");
+    public static WebElement registerButtonAlt = findBy(css, "input[onclick=\"location.href='/register'\"]");
+    public static WebElement returningCustomerTitle = findBy(css, ".returning-wrapper .title strong");
+
     // ==== FORM LABELS ====
-    
-    @FindBy(css = "label[for='Email']")
-    public static WebElement emailLabel;
-    
-    @FindBy(css = "label[for='Password']")
-    public static WebElement passwordLabel;
-    
-    @FindBy(css = "label[for='RememberMe']")
-    public static WebElement rememberMeLabel;
-    
+    public static WebElement emailLabel = findBy(css, "label[for='Email']");
+    public static WebElement passwordLabel = findBy(css, "label[for='Password']");
+    public static WebElement rememberMeLabel = findBy(css, "label[for='RememberMe']");
+
     // ==== ADDITIONAL CONTENT ====
-    
-    // About login/registration section
-    @FindBy(css = ".topic-html-content-title h2")
-    public static WebElement aboutLoginHeader;
-    
-    @FindBy(css = ".topic-html-content-body p")
-    public static WebElement aboutLoginContent;
+    public static WebElement aboutLoginHeader = findBy(css, ".topic-html-content-title h2");
+    public static WebElement aboutLoginContent = findBy(css, ".topic-html-content-body p");
 }

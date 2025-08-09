@@ -1,196 +1,86 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
 import java.util.List;
+
+import static pages.Base_Page.*;
+import static pages.Base_Page.LocatorType.*;
+
+import static base.Base.*;
 
 public class HomePage {
 
+    private static WebDriver driver = getDr();
+
     // ==== HEADER ELEMENTS ====
-    
-    // Logo
-    @FindBy(css = ".header-logo img")
-    public static WebElement logo;
-    
-    // Header links
-    @FindBy(css = "a.ico-register")
-    public static WebElement registerLink;
-    
-    @FindBy(css = "a.ico-login")
-    public static WebElement loginURL;
-    
-    @FindBy(css = "a.ico-cart")
-    public static WebElement shoppingCartLink;
-    
-    @FindBy(css = "a.ico-wishlist")
-    public static WebElement wishlistLink;
-    
-    // Cart quantity
-    @FindBy(css = ".cart-qty")
-    public static WebElement cartQuantity;
-    
-    // Wishlist quantity
-    @FindBy(css = ".wishlist-qty")
-    public static WebElement wishlistQuantity;
-    
+    public static WebElement logo = findBy(css, ".header-logo img");
+    public static WebElement registerLink = findBy(css, "a.ico-register");
+    public static WebElement loginURL = findBy(css, "a.ico-login");
+    public static WebElement shoppingCartLink = findBy(css, "a.ico-cart");
+    public static WebElement wishlistLink = findBy(css, "a.ico-wishlist");
+    public static WebElement cartQuantity = findBy(css, ".cart-qty");
+    public static WebElement wishlistQuantity = findBy(css, ".wishlist-qty");
+
     // ==== SEARCH ELEMENTS ====
-    
-    @FindBy(id = "small-searchterms")
-    public static WebElement searchBox;
-    
-    @FindBy(css = "input.button-1.search-box-button")
-    public static WebElement searchButton;
-    
-    @FindBy(css = "input[type='submit'][value='Search']")
-    public static WebElement searchSubmitButton;
-    
+    public static WebElement searchBox = findBy(id, "small-searchterms");
+    public static WebElement searchButton = findBy(css, "input.button-1.search-box-button");
+    public static WebElement searchSubmitButton = findBy(css, "input[type='submit'][value='Search']");
+
     // ==== NAVIGATION MENU ====
-    
-    // Top menu items
-    @FindBy(css = ".top-menu")
-    public static WebElement topMenu;
-    
-    @FindBy(linkText = "Books")
-    public static WebElement booksLink;
-    
-    @FindBy(linkText = "Computers")
-    public static WebElement computersLink;
-    
-    @FindBy(linkText = "Electronics")
-    public static WebElement electronicsLink;
-    
-    @FindBy(linkText = "Apparel & Shoes")
-    public static WebElement apparelShoesLink;
-    
-    @FindBy(linkText = "Digital downloads")
-    public static WebElement digitalDownloadsLink;
-    
-    @FindBy(linkText = "Jewelry")
-    public static WebElement jewelryLink;
-    
-    @FindBy(linkText = "Gift Cards")
-    public static WebElement giftCardsLink;
-    
-    // Sub-menu items for Computers
-    @FindBy(linkText = "Desktops")
-    public static WebElement desktopsLink;
-    
-    @FindBy(linkText = "Notebooks")
-    public static WebElement notebooksLink;
-    
-    @FindBy(linkText = "Accessories")
-    public static WebElement accessoriesLink;
-    
-    // Sub-menu items for Electronics
-    @FindBy(linkText = "Camera, photo")
-    public static WebElement cameraPhotoLink;
-    
-    @FindBy(linkText = "Cell phones")
-    public static WebElement cellPhonesLink;
-    
+    public static WebElement topMenu = findBy(css, ".top-menu");
+    // For dynamic category links, keep as method
+    public static WebElement getTopMenuCategories(String category_name) {
+        return findBy(linkText, category_name);
+    }
+    public static WebElement getComputerSub_Categories(String category_name) {
+        return findBy(linkText, category_name);
+    }
+
     // ==== SIDEBAR ELEMENTS ====
-    
-    // Categories block
-    @FindBy(css = ".block-category-navigation .title strong")
-    public static WebElement categoriesTitle;
-    
-    @FindBy(css = ".block-category-navigation .list")
-    public static WebElement categoriesList;
-    
-    // Manufacturers block
-    @FindBy(css = ".block-manufacturer-navigation .title strong")
-    public static WebElement manufacturersTitle;
-    
-    @FindBy(linkText = "Tricentis")
-    public static WebElement tricentisLink;
-    
-    // Newsletter block
-    @FindBy(css = ".block-newsletter .title strong")
-    public static WebElement newsletterTitle;
-    
-    @FindBy(id = "newsletter-email")
-    public static WebElement newsletterEmailInput;
-    
-    @FindBy(id = "newsletter-subscribe-button")
-    public static WebElement newsletterSubscribeButton;
-    
-    @FindBy(css = ".button-1.newsletter-subscribe-button")
-    public static WebElement newsletterSubscribeButtonAlt;
-    
+    public static WebElement categoriesTitle = findBy(css, ".block-category-navigation .title strong");
+    public static WebElement categoriesList = findBy(css, ".block-category-navigation .list");
+    public static WebElement manufacturersTitle = findBy(css, ".block-manufacturer-navigation .title strong");
+    public static WebElement tricentisLink = findBy(linkText, "Tricentis");
+    public static WebElement newsletterTitle = findBy(css, ".block-newsletter .title strong");
+    public static WebElement newsletterEmailInput = findBy(id, "newsletter-email");
+    public static WebElement newsletterSubscribeButton = findBy(id, "newsletter-subscribe-button");
+    public static WebElement newsletterSubscribeButtonAlt = findBy(css, ".button-1.newsletter-subscribe-button");
+
     // ==== FOOTER ELEMENTS ====
-    
-    // Footer sections
-    @FindBy(css = ".footer .column.information h3")
-    public static WebElement informationFooterTitle;
-    
-    @FindBy(css = ".footer .column.customer-service h3")
-    public static WebElement customerServiceFooterTitle;
-    
-    @FindBy(css = ".footer .column.my-account h3")
-    public static WebElement myAccountFooterTitle;
-    
-    @FindBy(css = ".footer .column.follow-us h3")
-    public static WebElement followUsFooterTitle;
-    
-    // Footer links
-    @FindBy(linkText = "Sitemap")
-    public static WebElement sitemapLink;
-    
-    @FindBy(linkText = "Shipping & Returns")
-    public static WebElement shippingReturnsLink;
-    
-    @FindBy(linkText = "Privacy Notice")
-    public static WebElement privacyNoticeLink;
-    
-    @FindBy(linkText = "Conditions of Use")
-    public static WebElement conditionsOfUseLink;
-    
-    @FindBy(linkText = "About us")
-    public static WebElement aboutUsLink;
-    
-    @FindBy(linkText = "Contact us")
-    public static WebElement contactUsLink;
-    
-    // Social media links
-    @FindBy(css = ".facebook a")
-    public static WebElement facebookLink;
-    
-    @FindBy(css = ".twitter a")
-    public static WebElement twitterLink;
-    
-    @FindBy(css = ".youtube a")
-    public static WebElement youtubeLink;
-    
-    @FindBy(css = ".google-plus a")
-    public static WebElement googlePlusLink;
-    
+    public static WebElement informationFooterTitle = findBy(css, ".footer .column.information h3");
+    public static WebElement customerServiceFooterTitle = findBy(css, ".footer .column.customer-service h3");
+    public static WebElement myAccountFooterTitle = findBy(css, ".footer .column.my-account h3");
+    public static WebElement followUsFooterTitle = findBy(css, ".footer .column.follow-us h3");
+    public static WebElement sitemapLink = findBy(linkText, "Sitemap");
+    public static WebElement shippingReturnsLink = findBy(linkText, "Shipping & Returns");
+    public static WebElement privacyNoticeLink = findBy(linkText, "Privacy Notice");
+    public static WebElement conditionsOfUseLink = findBy(linkText, "Conditions of Use");
+    public static WebElement aboutUsLink = findBy(linkText, "About us");
+    public static WebElement contactUsLink = findBy(linkText, "Contact us");
+    public static WebElement facebookLink = findBy(css, ".facebook a");
+    public static WebElement twitterLink = findBy(css, ".twitter a");
+    public static WebElement youtubeLink = findBy(css, ".youtube a");
+    public static WebElement googlePlusLink = findBy(css, ".google-plus a");
+
     // ==== NOTIFICATION ELEMENTS ====
-    
-    @FindBy(id = "dialog-notifications-success")
-    public static WebElement successNotification;
-    
-    @FindBy(id = "dialog-notifications-error")
-    public static WebElement errorNotification;
-    
-    @FindBy(id = "bar-notification")
-    public static WebElement barNotification;
-    
+    public static WebElement successNotification = findBy(id, "dialog-notifications-success");
+    public static WebElement errorNotification = findBy(id, "dialog-notifications-error");
+    public static WebElement barNotification = findBy(id, "bar-notification");
+
     // ==== MOBILE ELEMENTS ====
-    
-    @FindBy(id = "mob-menu-button")
-    public static WebElement mobileMenuButton;
-    
-    @FindBy(css = ".mob-top-menu")
-    public static WebElement mobileTopMenu;
-    
+    public static WebElement mobileMenuButton = findBy(id, "mob-menu-button");
+    public static WebElement mobileTopMenu = findBy(css, ".mob-top-menu");
+
     // ==== LISTS FOR BULK OPERATIONS ====
-    
-    @FindBy(css = ".top-menu > li > a")
-    public static List<WebElement> allTopMenuLinks;
-    
-    @FindBy(css = ".header-links ul li a")
-    public static List<WebElement> allHeaderLinks;
-    
-    @FindBy(css = ".footer a")
-    public static List<WebElement> allFooterLinks;
+    public List<WebElement> allTopMenuLinks() {
+        return driver.findElements(By.cssSelector(".top-menu > li > a"));
+    }
+
+    public List<WebElement> allHeaderLinks() {
+        return driver.findElements(By.cssSelector(".header-links ul li a"));
+    }
+
+    public List<WebElement> allFooterLinks() {
+        return driver.findElements(By.cssSelector(".footer a"));
+    }
 }

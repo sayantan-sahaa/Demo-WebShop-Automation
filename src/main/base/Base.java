@@ -84,31 +84,6 @@ public class Base {
         }
         return webDriver;
     }
-
-    @BeforeMethod
-    public void initPageElements(Method method) {
-        String testName = method.getName();
-        
-        System.out.println("Initializing page elements for test: " + testName);
-        try {
-            WebDriver driverInstance = getDr();
-            PageFactory.initElements(driverInstance, HomePage.class);
-            PageFactory.initElements(driverInstance, LoginPage.class);
-            System.out.println("Page elements initialized successfully");
-                            
-        } catch (Exception e) {
-            System.err.println("Failed to initialize page elements: " + e.getMessage());
-            e.printStackTrace();
-            
-            try {
-                ExtentReportUtil.createTest("Page Elements Initialization - FAILED")
-                    .fail("Failed to initialize page elements: " + e.getMessage())
-                    .fail(e);
-            } catch (Exception reportException) {
-                System.err.println("Failed to log error to Extent Report: " + reportException.getMessage());
-            }
-        }
-    }
     
     @AfterSuite
     public void tearDown() {  
