@@ -2,20 +2,14 @@ package base;
 
 import java.util.Set;
 import java.io.File;
-import java.lang.reflect.Method;
-import pages.HomePage;
-import pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import org.reflections.Reflections;
 import org.testng.annotations.*;
-
 import core_java.Pattern;
-
 import listeners.Listener;
 import reporting.ExtentReportUtil;
 import utils.Asserts;
+import static base.DriverManagerFactory.*;
 
 
 public class Base {
@@ -30,29 +24,23 @@ public class Base {
             printPattern3(5);
 
             ExtentReportUtil.initializeReport();
-            
+        
             ScreenShotUtil.startScreenRecord();
                         
-            DriverManagerFactory driverManager = new DriverManagerFactory();
-            driverManager.setdriverMap(FirefoxDriverManager.class, "firefox");
-            
             if (driver.get() == null) {
-                DriverManagerFactory driverManagerFactory = new DriverManagerFactory();
-                DriverManager dm = driverManagerFactory.getDriverManager("firefox");
-                WebDriver rawWebDriver = dm.createDriver();
                 
-                driver.set(rawWebDriver);
+                Class.forName("base.BrowserSelector");
+                driver.set(getDriverManager("firefox").createDriver());
                 
                 Listener webDriverListener = new Listener();
                 
                 WebDriver decoratedWebDriver = new EventFiringDecorator<>(webDriverListener)
-                    .decorate(rawWebDriver);
+                    .decorate(driver.get());
                 
                 driver.set(decoratedWebDriver);
                 
                 decoratedWebDriver.manage().window().maximize();
                 
-                decoratedWebDriver.manage().deleteAllCookies();
                 decoratedWebDriver.get("https://demowebshop.tricentis.com/");
                                
                 ExtentReportUtil.createTest("Test Suite Setup")
@@ -157,31 +145,37 @@ public class Base {
     
     private static void clearStaticFields() {
         try {
-            System.out.println("Clearing static fields...");
-            
-            Reflections allClasses = new Reflections("base", "pages", 
-                                                     "steps", "utils", 
-                                                     "reporting", "listeners", 
-                                                     "datamodels");
-            Set<Class<?>> classesToClear = allClasses.getSubTypesOf(Object.class);
-
+            System.out.println("Clearing static fields manually...");
             int clearedFields = 0;
-            for (Class<?> clazz : classesToClear) {
-                for (java.lang.reflect.Field field : clazz.getDeclaredFields()) {
-                    if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) &&
-                        !java.lang.reflect.Modifier.isFinal(field.getModifiers())) {
-                        field.setAccessible(true);
-                        try {
-                            field.set(null, null);
-                            clearedFields++;
-                        } catch (IllegalAccessException e) {
-                            System.err.println("Failed to clear static field: " + field.getName());
-                        }
-                    }
+
+            // Manually declare all classes in the framework
+            Set<Class<?>> classes = Set.of(
+            base.Base.class,
+            base.BrowserSelector.class,
+            listeners.Listener.class,
+            reporting.ExtentReportUtil.class,
+            utils.Asserts.class,
+            core_java.Pattern.class,
+            pages.HomePage.class
+
+            );
+
+            for (Class<?> clazz : classes) {
+            for (java.lang.reflect.Field field : clazz.getDeclaredFields()) {
+                if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) &&
+                !java.lang.reflect.Modifier.isFinal(field.getModifiers())) {
+                field.setAccessible(true);
+                try {
+                    field.set(null, null);
+                    clearedFields++;
+                } catch (IllegalAccessException e) {
+                    System.err.println("Failed to clear static field: " + field.getName());
+                }
                 }
             }
+            }
+
             System.out.println("Static fields cleared successfully. Total fields cleared: " + clearedFields);
-            
         } catch (Exception e) {
             System.err.println("Error clearing static fields: " + e.getMessage());
         }

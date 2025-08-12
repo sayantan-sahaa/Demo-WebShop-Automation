@@ -12,7 +12,7 @@ public class DriverManagerFactory {
         driverMap.put(browser, clazz);
     }
 
-    public DriverManager getDriverManager(String browser){
+    public static DriverManager getDriverManager(String browser){
         Class<? extends DriverManager> clazz = driverMap.get(browser);
         try {
             return clazz.getDeclaredConstructor().newInstance();
