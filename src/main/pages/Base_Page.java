@@ -84,13 +84,10 @@ public class Base_Page {
                 break;
             default:
                 throw new IllegalArgumentException("Invalid locator type: " + byType);
-
-            
-            
+  
         }
 
         return getDr().findElements(by);
-
 
     }
 

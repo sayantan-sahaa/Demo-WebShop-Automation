@@ -11,7 +11,6 @@ public class ExtentReportUtil {
     private static ExtentReports extent;
     private static ExtentTest test;
 
-    // Initialize the Extent Report
     public static void initializeReport() {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/ExtentReport.html");
         sparkReporter.config().setReportName("Automation Test Report");

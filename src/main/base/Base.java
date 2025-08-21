@@ -10,6 +10,7 @@ import listeners.Listener;
 import reporting.ExtentReportUtil;
 import utils.Asserts;
 import static base.DriverManagerFactory.*;
+import java.lang.reflect.Field;
 
 
 public class Base {
@@ -24,9 +25,7 @@ public class Base {
             printPattern3(5);
 
             ExtentReportUtil.initializeReport();
-        
-            ScreenShotUtil.startScreenRecord();
-                        
+                                
             if (driver.get() == null) {
                 
                 Class.forName("base.BrowserSelector");
@@ -101,8 +100,6 @@ public class Base {
             WebDriver webDriver = driver.get();
             if (webDriver != null) {
                 try {
-                    // Stop screen recording before browser closes
-                    ScreenShotUtil.stopScreenRecord();
                     
                     webDriver.quit();
                     System.out.println("WebDriver closed successfully");
@@ -148,7 +145,6 @@ public class Base {
             System.out.println("Clearing static fields manually...");
             int clearedFields = 0;
 
-            // Manually declare all classes in the framework
             Set<Class<?>> classes = Set.of(
             base.Base.class,
             base.BrowserSelector.class,
@@ -161,7 +157,7 @@ public class Base {
             );
 
             for (Class<?> clazz : classes) {
-            for (java.lang.reflect.Field field : clazz.getDeclaredFields()) {
+            for (Field field : clazz.getDeclaredFields()) {
                 if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) &&
                 !java.lang.reflect.Modifier.isFinal(field.getModifiers())) {
                 field.setAccessible(true);
