@@ -89,5 +89,27 @@ public class TableReader {
         
         getTableValuesByColumn(table, columnIndex);
     }
+
+    public static int findRowIndexByCellText(WebElement table, String text) {
+        List<WebElement> rows = table.findElements(By.tagName("tr"));
+        for (int i = 0; i < rows.size(); i++) {
+            WebElement row = rows.get(i);
+            List<WebElement> headers = row.findElements(By.tagName("th"));
+            for (WebElement h : headers) {
+                if (h.getText().trim().equalsIgnoreCase(text)) {
+                    return i;
+                }
+            }
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            for (WebElement c : cells) {
+                if (c.getText().trim().equalsIgnoreCase(text)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
     
 }
+
