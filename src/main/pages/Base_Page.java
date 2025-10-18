@@ -50,7 +50,7 @@ public class Base_Page {
         }
     }
 
-    public static List <WebElement> findAll(LocatorType byType, String locator){
+    public static List <WebElement> findAlls(LocatorType byType, String locator){
 
         By by;
 
@@ -90,6 +90,8 @@ public class Base_Page {
         return getDr().findElements(by);
 
     }
+
+
 
     public static WebElement find1st(LocatorType byType, String locator){
 

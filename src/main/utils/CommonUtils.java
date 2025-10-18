@@ -9,6 +9,7 @@ import java.util.Properties;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonUtils {
 
@@ -22,6 +23,11 @@ public class CommonUtils {
             .sendKeys(Keys.DELETE)
             .build()
             .perform();
+    }
+
+    public static void dropDown(WebElement element, String value){
+        new Select(element).selectByVisibleText(value);
+        
     }
 
     public static void doubleClick(WebElement element){
@@ -41,7 +47,6 @@ public class CommonUtils {
             prop.load(fis);
             return prop.getProperty(key);
         } catch (Exception e) {
-            //logger.error("Error reading config file: {}", e.getMessage(), e);
             return null;
         }
     }
