@@ -12,8 +12,10 @@ public class Base {
 
     public static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
+    private Base(){}
+
     @BeforeSuite(alwaysRun = true)
-    public void setUp() { 
+    public static void setUp() { 
         try {
             
             new Pattern().printPattern1(5).printPattern2(5).
@@ -52,7 +54,7 @@ public class Base {
     }
     
     @AfterSuite
-    public void tearDown() {  
+    public static void tearDown() {  
         
             WebDriver webDriver = driver.get();
             if (webDriver != null) {

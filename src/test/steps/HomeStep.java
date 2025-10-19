@@ -3,10 +3,10 @@ package steps;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.*;
 
-import base.Base;
+import static base.Base.*;
 import io.cucumber.java.en.*;
 
-public class HomeStep extends Base{
+public class HomeStep{
 
     @BeforeGroups(groups={"Register", "Login", "Category-Panels", })
     @Test(groups={"Home"})

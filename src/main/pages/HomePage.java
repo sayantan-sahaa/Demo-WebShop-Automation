@@ -5,82 +5,123 @@ import java.util.List;
 
 import static pages.Base_Page.*;
 import static pages.Base_Page.LocatorType.*;
-
 import static base.Base.*;
 
 public class HomePage {
 
-    private static WebDriver driver = getDr();
+    // avoid initializing WebDriver at class load time; resolve it at runtime via Base.getDr()
 
-    // ==== HEADER ELEMENTS ====
-    public static WebElement logo = findBy(css, ".header-logo img");
-    public static WebElement registerLink = findBy(css, "a.ico-register");
-    public static WebElement loginURL = findBy(css, "a.ico-login");
-    public static WebElement shoppingCartLink = findBy(css, "a.ico-cart");
-    public static WebElement wishlistLink = findBy(css, "a.ico-wishlist");
-    public static WebElement cartQuantity = findBy(css, ".cart-qty");
-    public static WebElement wishlistQuantity = findBy(css, ".wishlist-qty");
+    // ==== HEADER LOCATORS ====
+    private final String logoLocator = ".header-logo img";
+    private final String registerLinkLocator = "a.ico-register";
+    private final String loginURLLocator = "a.ico-login";
+    private final String shoppingCartLinkLocator = "a.ico-cart";
+    private final String wishlistLinkLocator = "a.ico-wishlist";
+    private final String cartQuantityLocator = ".cart-qty";
+    private final String wishlistQuantityLocator = ".wishlist-qty";
 
-    // ==== SEARCH ELEMENTS ====
-    public static WebElement searchBox = findBy(id, "small-searchterms");
-    public static WebElement searchButton = findBy(css, "input.button-1.search-box-button");
-    public static WebElement searchSubmitButton = findBy(css, "input[type='submit'][value='Search']");
+    // ==== SEARCH LOCATORS ====
+    private final String searchBoxLocator = "small-searchterms"; // id
+    private final String searchButtonLocator = "input.button-1.search-box-button";
+    private final String searchSubmitButtonLocator = "input[type='submit'][value='Search']";
 
     // ==== NAVIGATION MENU ====
-    public static WebElement topMenu = findBy(css, ".top-menu");
-    // For dynamic category links, keep as method
-    public static WebElement getTopMenuCategories(String category_name) {
-        return findBy(linkText, category_name);
-    }
-    public static WebElement getComputerSub_Categories(String category_name) {
-        return findBy(linkText, category_name);
-    }
+    private final String topMenuLocator = ".top-menu";
 
-    // ==== SIDEBAR ELEMENTS ====
-    public static WebElement categoriesTitle = findBy(css, ".block-category-navigation .title strong");
-    public static WebElement categoriesList = findBy(css, ".block-category-navigation .list");
-    public static WebElement manufacturersTitle = findBy(css, ".block-manufacturer-navigation .title strong");
-    public static WebElement tricentisLink = findBy(linkText, "Tricentis");
-    public static WebElement newsletterTitle = findBy(css, ".block-newsletter .title strong");
-    public static WebElement newsletterEmailInput = findBy(id, "newsletter-email");
-    public static WebElement newsletterSubscribeButton = findBy(id, "newsletter-subscribe-button");
-    public static WebElement newsletterSubscribeButtonAlt = findBy(css, ".button-1.newsletter-subscribe-button");
+    // ==== SIDEBAR LOCATORS ====
+    private final String categoriesTitleLocator = ".block-category-navigation .title strong";
+    private final String categoriesListLocator = ".block-category-navigation .list";
+    private final String manufacturersTitleLocator = ".block-manufacturer-navigation .title strong";
+    private final String tricentisLinkLocator = "Tricentis"; // linkText
+    private final String newsletterTitleLocator = ".block-newsletter .title strong";
+    private final String newsletterEmailInputLocator = "newsletter-email"; // id
+    private final String newsletterSubscribeButtonLocator = "newsletter-subscribe-button"; // id
+    private final String newsletterSubscribeButtonAltLocator = ".button-1.newsletter-subscribe-button";
 
-    // ==== FOOTER ELEMENTS ====
-    public static WebElement informationFooterTitle = findBy(css, ".footer .column.information h3");
-    public static WebElement customerServiceFooterTitle = findBy(css, ".footer .column.customer-service h3");
-    public static WebElement myAccountFooterTitle = findBy(css, ".footer .column.my-account h3");
-    public static WebElement followUsFooterTitle = findBy(css, ".footer .column.follow-us h3");
-    public static WebElement sitemapLink = findBy(linkText, "Sitemap");
-    public static WebElement shippingReturnsLink = findBy(linkText, "Shipping & Returns");
-    public static WebElement privacyNoticeLink = findBy(linkText, "Privacy Notice");
-    public static WebElement conditionsOfUseLink = findBy(linkText, "Conditions of Use");
-    public static WebElement aboutUsLink = findBy(linkText, "About us");
-    public static WebElement contactUsLink = findBy(linkText, "Contact us");
-    public static WebElement facebookLink = findBy(css, ".facebook a");
-    public static WebElement twitterLink = findBy(css, ".twitter a");
-    public static WebElement youtubeLink = findBy(css, ".youtube a");
-    public static WebElement googlePlusLink = findBy(css, ".google-plus a");
+    // ==== FOOTER LOCATORS ====
+    private final String informationFooterTitleLocator = ".footer .column.information h3";
+    private final String customerServiceFooterTitleLocator = ".footer .column.customer-service h3";
+    private final String myAccountFooterTitleLocator = ".footer .column.my-account h3";
+    private final String followUsFooterTitleLocator = ".footer .column.follow-us h3";
+    private final String sitemapLinkLocator = "Sitemap"; // linkText
+    private final String shippingReturnsLinkLocator = "Shipping & Returns"; // linkText
+    private final String privacyNoticeLinkLocator = "Privacy Notice"; // linkText
+    private final String conditionsOfUseLinkLocator = "Conditions of Use"; // linkText
+    private final String aboutUsLinkLocator = "About us"; // linkText
+    private final String contactUsLinkLocator = "Contact us"; // linkText
+    private final String facebookLinkLocator = ".facebook a";
+    private final String twitterLinkLocator = ".twitter a";
+    private final String youtubeLinkLocator = ".youtube a";
+    private final String googlePlusLinkLocator = ".google-plus a";
 
-    // ==== NOTIFICATION ELEMENTS ====
-    public static WebElement successNotification = findBy(id, "dialog-notifications-success");
-    public static WebElement errorNotification = findBy(id, "dialog-notifications-error");
-    public static WebElement barNotification = findBy(id, "bar-notification");
+    // ==== NOTIFICATION LOCATORS ====
+    private final String successNotificationLocator = "dialog-notifications-success"; // id
+    private final String errorNotificationLocator = "dialog-notifications-error"; // id
+    private final String barNotificationLocator = "bar-notification"; // id
 
-    // ==== MOBILE ELEMENTS ====
-    public static WebElement mobileMenuButton = findBy(id, "mob-menu-button");
-    public static WebElement mobileTopMenu = findBy(css, ".mob-top-menu");
+    // ==== MOBILE LOCATORS ====
+    private final String mobileMenuButtonLocator = "mob-menu-button"; // id
+    private final String mobileTopMenuLocator = ".mob-top-menu";
 
     // ==== LISTS FOR BULK OPERATIONS ====
     public List<WebElement> allTopMenuLinks() {
-        return driver.findElements(By.cssSelector(".top-menu > li > a"));
+        return getDr().findElements(By.cssSelector(".top-menu > li > a"));
     }
 
     public List<WebElement> allHeaderLinks() {
-        return driver.findElements(By.cssSelector(".header-links ul li a"));
+        return getDr().findElements(By.cssSelector(".header-links ul li a"));
     }
 
     public List<WebElement> allFooterLinks() {
-        return driver.findElements(By.cssSelector(".footer a"));
+        return getDr().findElements(By.cssSelector(".footer a"));
     }
+
+    // runtime element accessors
+    public WebElement logo() { return findBy(css, logoLocator); }
+    public WebElement registerLink() { return findBy(css, registerLinkLocator); }
+    public WebElement loginURL() { return findBy(css, loginURLLocator); }
+    public WebElement shoppingCartLink() { return findBy(css, shoppingCartLinkLocator); }
+    public WebElement wishlistLink() { return findBy(css, wishlistLinkLocator); }
+    public WebElement cartQuantity() { return findBy(css, cartQuantityLocator); }
+    public WebElement wishlistQuantity() { return findBy(css, wishlistQuantityLocator); }
+
+    public WebElement searchBox() { return findBy(id, searchBoxLocator); }
+    public WebElement searchButton() { return findBy(css, searchButtonLocator); }
+    public WebElement searchSubmitButton() { return findBy(css, searchSubmitButtonLocator); }
+
+    public WebElement topMenu() { return findBy(css, topMenuLocator); }
+    public WebElement getTopMenuCategories(String category_name) { return findBy(linkText, category_name); }
+    public WebElement getComputerSub_Categories(String category_name) { return findBy(linkText, category_name); }
+
+    public WebElement categoriesTitle() { return findBy(css, categoriesTitleLocator); }
+    public WebElement categoriesList() { return findBy(css, categoriesListLocator); }
+    public WebElement manufacturersTitle() { return findBy(css, manufacturersTitleLocator); }
+    public WebElement tricentisLink() { return findBy(linkText, tricentisLinkLocator); }
+    public WebElement newsletterTitle() { return findBy(css, newsletterTitleLocator); }
+    public WebElement newsletterEmailInput() { return findBy(id, newsletterEmailInputLocator); }
+    public WebElement newsletterSubscribeButton() { return findBy(id, newsletterSubscribeButtonLocator); }
+    public WebElement newsletterSubscribeButtonAlt() { return findBy(css, newsletterSubscribeButtonAltLocator); }
+
+    public WebElement informationFooterTitle() { return findBy(css, informationFooterTitleLocator); }
+    public WebElement customerServiceFooterTitle() { return findBy(css, customerServiceFooterTitleLocator); }
+    public WebElement myAccountFooterTitle() { return findBy(css, myAccountFooterTitleLocator); }
+    public WebElement followUsFooterTitle() { return findBy(css, followUsFooterTitleLocator); }
+    public WebElement sitemapLink() { return findBy(linkText, sitemapLinkLocator); }
+    public WebElement shippingReturnsLink() { return findBy(linkText, shippingReturnsLinkLocator); }
+    public WebElement privacyNoticeLink() { return findBy(linkText, privacyNoticeLinkLocator); }
+    public WebElement conditionsOfUseLink() { return findBy(linkText, conditionsOfUseLinkLocator); }
+    public WebElement aboutUsLink() { return findBy(linkText, aboutUsLinkLocator); }
+    public WebElement contactUsLink() { return findBy(linkText, contactUsLinkLocator); }
+    public WebElement facebookLink() { return findBy(css, facebookLinkLocator); }
+    public WebElement twitterLink() { return findBy(css, twitterLinkLocator); }
+    public WebElement youtubeLink() { return findBy(css, youtubeLinkLocator); }
+    public WebElement googlePlusLink() { return findBy(css, googlePlusLinkLocator); }
+
+    public WebElement successNotification() { return findBy(id, successNotificationLocator); }
+    public WebElement errorNotification() { return findBy(id, errorNotificationLocator); }
+    public WebElement barNotification() { return findBy(id, barNotificationLocator); }
+
+    public WebElement mobileMenuButton() { return findBy(id, mobileMenuButtonLocator); }
+    public WebElement mobileTopMenu() { return findBy(css, mobileTopMenuLocator); }
+
 }

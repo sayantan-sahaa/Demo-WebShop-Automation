@@ -1,8 +1,0 @@
-{Clicking on element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: a.ico-login]
-zClicked on element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: a.ico-login]
-˜Sending keys to element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.email] - Keys: test@example.com
-•Sent keys to element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.email] - Keys: test@example.com
-–Sending keys to element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.password] - Keys: password123
-“Sent keys to element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.password] - Keys: password123
-‹Clicking on element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.button-1.login-button]
-ŠClicked on element: [[FirefoxDriver: firefox on mac (7e09b7cc-e75e-479f-861f-c52cf9aba025)] -> css selector: input.button-1.login-button]
