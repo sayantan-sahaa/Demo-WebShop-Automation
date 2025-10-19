@@ -9,8 +9,6 @@ import static base.Base.*;
 
 public class HomePage {
 
-    // avoid initializing WebDriver at class load time; resolve it at runtime via Base.getDr()
-
     // ==== HEADER LOCATORS ====
     private final String logoLocator = ".header-logo img";
     private final String registerLinkLocator = "a.ico-register";
@@ -76,7 +74,6 @@ public class HomePage {
         return getDr().findElements(By.cssSelector(".footer a"));
     }
 
-    // runtime element accessors
     public WebElement logo() { return findBy(css, logoLocator); }
     public WebElement registerLink() { return findBy(css, registerLinkLocator); }
     public WebElement loginURL() { return findBy(css, loginURLLocator); }

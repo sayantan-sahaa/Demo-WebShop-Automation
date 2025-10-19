@@ -40,7 +40,6 @@ public class LoginPage {
     private final String aboutLoginHeaderLocator = ".topic-html-content-title h2";
     private final String aboutLoginContentLocator = ".topic-html-content-body p";
 
-    // runtime accessors
     public WebElement emailField() { return findBy(id, emailFieldLocator); }
     public WebElement email() { return findBy(css, emailLocator); }
     public WebElement passwordField() { return findBy(id, passwordFieldLocator); }

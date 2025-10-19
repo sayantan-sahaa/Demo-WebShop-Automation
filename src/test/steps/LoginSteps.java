@@ -20,7 +20,6 @@ public class LoginSteps {
         try {
             Base.getDr();
         } catch (IllegalStateException e) {
-            // If driver isn't initialized via TestNG lifecycle, initialize it here
             Base.setUp();
         }
     }
